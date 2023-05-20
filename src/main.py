@@ -4,6 +4,7 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 
+from info import info_dict
 
 def detect_marker(frame, aruco_dict, parameters):
     corners, ids, _ = aruco.detectMarkers(frame, aruco_dict, parameters=parameters)
@@ -20,14 +21,10 @@ def run_speech(info_dict, id):
     os.system(f'espeak -v ko "{info_dict[id]}"')
 
 def main():
-    info_dict = {
-        203: "하세요",
-        23: "안녕",
-    }
-
     cap = cv2.VideoCapture(0)
-    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)
+    aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_250)
     parameters = aruco.DetectorParameters_create()
+    print(parameters.maxMarkerPerimeterRate)
 
     prev_id = None
 
@@ -40,6 +37,7 @@ def main():
         corners, ids = detect_marker(gray, aruco_dict, parameters)
         if ids is not None: 
             corner, id = extract_main(corners, ids)
+            print(id)
             if prev_id == id:
                 continue
             if id is not None:
@@ -47,8 +45,8 @@ def main():
                 prev_id = id
             run_speech(info_dict, id)
 
-        # frame = aruco.drawDetectedMarkers(frame, corners, ids)
-        # cv2.imshow('frame', frame)
+        frame = aruco.drawDetectedMarkers(frame, corners, ids)
+        cv2.imshow('frame', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
