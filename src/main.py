@@ -12,7 +12,26 @@ def detect_marker(frame, aruco_dict, parameters):
 
 def extract_main(corners, ids):
     main_idx = np.argmax([cv2.contourArea(c) for c in corners])
-    return corners[main_idx], ids[main_idx][0]
+    return corners[main_idx][0], ids[main_idx][0]
+
+def detect_direction(corner):
+    center = np.mean(corner, axis=0)
+    vector = center - (corner[0] + corner[1]) / 2 
+
+    angle = np.arctan2(vector[1], vector[0]) / np.pi * 180
+    if angle < 0: 
+        angle += 360
+
+    if angle > 45 and angle < 135:
+        print('up')
+    elif angle > 135 and angle < 225:
+        print('left')
+    elif angle > 225 and angle < 315:
+        print('down')
+    else:
+        print('right')
+
+
 
 def run_speech(info_dict, id):
     if id not in info_dict:
@@ -37,6 +56,7 @@ def main():
         corners, ids = detect_marker(gray, aruco_dict, parameters)
         if ids is not None: 
             corner, id = extract_main(corners, ids)
+            detect_direction(corner)
             print(id)
             if prev_id == id:
                 continue
