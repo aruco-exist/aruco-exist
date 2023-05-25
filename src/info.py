@@ -9,6 +9,7 @@ info_dict = {
     7: "오른쪽으로 90도 꺾어주세요",
     8: "왼쪽으로 90도 꺽어주세요",
     9: "전방에 화장실이 있습니다",
-    10: "hello"
+    10: "hello",
+    11: "git push pull merge fetch ubuntu"
     
 }
