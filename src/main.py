@@ -41,7 +41,10 @@ def run_speech(info_dict, id):
 
 def main():
     cap = cv2.VideoCapture(0)
-    aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_250)
+    try:
+        aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_250)
+    except: # ubuntu 22 opencv 4.7 version error, Dictionary_get doesnt work Change opencv version 4.6.0.66 work _ lee younseo
+        aruco_dict = aruco.Dictionary(aruco.DICT_4X4_250)
     parameters = aruco.DetectorParameters_create()
     print(parameters.maxMarkerPerimeterRate)
 
