@@ -1,15 +1,15 @@
 info_dict = {
-    0: "1번출구 앞",
-    1: "2번출구 앞",
-    2: "3번출구 앞",
-    3: "4번출구 앞, 에스컬레이터가 있습니다",
-    4: "전방에 플랫폼으로 내려가는 계단",
-    5: "엘리베이터 앞",
-    6: "개찰구 앞",
-    7: "오른쪽으로 90도 꺾어주세요",
-    8: "왼쪽으로 90도 꺽어주세요",
-    9: "전방에 화장실이 있습니다",
-    10: "hello",
-    11: "git push pull merge fetch ubuntu"
-    
+    0: "Entrance 1",
+    1: "Entrance 2",
+    2: "Entrance 3",
+    3: "Entrance 4",
+    4: "Escalator going down",
+    5: "Escalator going up",
+    6: "Station office",
+    7: "Men toilet",
+    8: "Women toilet",
+    9: "Elevator",
+    10: "Ticket Gate",
+    11: "Stairs going down",
+    12: "Stairs going up",
 }

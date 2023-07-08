@@ -37,7 +37,7 @@ def run_speech(info_dict, id):
     if id not in info_dict:
         return
     print(info_dict[id])
-    os.system(f'espeak -v ko "{info_dict[id]}"')
+    os.system(f'espeak "{info_dict[id]}"')
 
 def main():
     cap = cv2.VideoCapture(0)
